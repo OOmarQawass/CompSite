@@ -1,0 +1,75 @@
+        /* CSS for the entire application */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/banner.jpg");
+            background-position: center;
+            background-size: cover;
+            color: white;
+            font-size: 30px;
+              }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        nav {
+            background-color: #800080; /* Purple color */
+            padding: 15px 0;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        main {
+            padding: 20px;
+            min-height: 60vh;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1a1a1a;
+        }
