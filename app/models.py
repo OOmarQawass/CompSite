@@ -1,21 +1,26 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+from dqlalchemy import Column, Integer, String, ForeignKey, Sequence, create_engine
+from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = r'C:\dev\CompSite\app\parts.db'  # Path to your database
-db = SQLAlchemy(app)
+engine = create_engine('sqlite:///parts.db)
+                       
+Session = sessionmaker(bind=engine)
+session = Session()
 
-# Define your database model
-class Part(db.Model):
-    id = db.id(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+Base = declarative_base()
 
-# Route to display data
-@app.route('/')
-def home():
-    parts = Part.query.all()  # Query all parts from the database
-    return render_template('Home.html', parts=parts)
+class Part(Base):
+    __tablename__ = 'parts'
+    id = Column(Integer, Sequence('part_id_seq'), primary_key=True)
+    case = Column(String(50))
+    cooler = Column(String(50))
+    cpu = Column(String(50))
+    gpu = Column(String(50))
+    motherboard = Column(String(50))
+    psu = Column(String(50))
+    ram = Column(String(50))
+    storage = Column(String(50))
+    
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    def __repr__(self):
+        return f"<Part(name={self.name}, description={self.description}, quantity={self.quantity}, price={self.price})>"
+                       
