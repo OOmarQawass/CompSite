@@ -15,12 +15,16 @@ class Part(Base):
     cooler = Column(String(50))
     cpu = Column(String(50))
     gpu = Column(String(50))
-    motherboard = Column(String(50))
+        
+        
+        
+        
+            motherboard = Column(String(50))
     psu = Column(String(50))
     ram = Column(String(50))
-    storage = Column(String(50))
+    storage = Column(String(50))+
+
     
 
     def __repr__(self):
         return f"<Part(name={self.name}, description={self.description}, quantity={self.quantity}, price={self.price})>"
-                       
