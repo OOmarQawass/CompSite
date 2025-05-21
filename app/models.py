@@ -1,12 +1,12 @@
-from dqlalchemy import Column, Integer, String, ForeignKey, Sequence, create_engine
+from sqlalchemy import Column, Integer, String, ForeignKey, Sequence, create_engine
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 
-engine = create_engine('sqlite:///parts.db)
+engine = create_engine('sqlite:///parts.db')
                        
 Session = sessionmaker(bind=engine)
 session = Session()
-
 Base = declarative_base()
+
 
 class Part(Base):
     __tablename__ = 'parts'
@@ -15,16 +15,11 @@ class Part(Base):
     cooler = Column(String(50))
     cpu = Column(String(50))
     gpu = Column(String(50))
-        
-        
-        
-        
-            motherboard = Column(String(50))
+    motherboard = Column(String(50))
     psu = Column(String(50))
     ram = Column(String(50))
-    storage = Column(String(50))+
+    storage = Column(String(50))
 
-    
 
-    def __repr__(self):
-        return f"<Part(name={self.name}, description={self.description}, quantity={self.quantity}, price={self.price})>"
+def __repr__(self):
+    return f"<case={self.case}, cooler={self.cooler}, cpu={self.cpu}, gpu={self.gpu}, motherboard={self.motherboard}, psu={self.psu}, ram={self.ram}, storage={self.storage})>"
