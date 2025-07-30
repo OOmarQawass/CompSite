@@ -1,5 +1,6 @@
-        /*Importing Google Fonts and setting up basic styles for the webpage*/
+       /*Importing Google Fonts and setting up basic styles for the webpage*/
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        * static/styles.css */
 
         * {
             box-sizing: border-box;
