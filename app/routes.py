@@ -25,7 +25,7 @@ def how_to():
     return render_template('how_to.html', page_title='HOW TO')
 
 
-@app.route('/part_lists')
+@app.route('/parts_lists')
 def part_lists():
     # Query all parts from the database
     parts = Part.query.all()
