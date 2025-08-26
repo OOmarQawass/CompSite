@@ -102,8 +102,3 @@ class Motherboard(Base):
         secondary=ram_motherboard_compatibility,
         back_populates='motherboards'
     )
-
-class Part(Base):
-    __abstract__ = True
-    id = Column(Integer, primary_key=True)
-    model = Column(String)

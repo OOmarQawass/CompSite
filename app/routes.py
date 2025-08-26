@@ -1,8 +1,8 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
-from app.models import Part
 from app import app
+from app.models import cpu, gpu, ram, cooler, psu, storage, case, motherboard
 
 
 # app = Flask(__name__)
@@ -27,14 +27,16 @@ def how_to():
 
 @app.route('/parts_lists')
 def part_lists():
-    # Query all parts from the database
-    parts = Part.query.all()
-    return render_template(
-        'part_lists.html',
-        page_title='Parts List',
-        parts=parts
-    )
-
+    parts = {
+            "cpu": cpu.query.all(),
+            "gpu": gpu.query.all(),
+            "ram": ram.query.all(),
+            "cooler": cooler.query.all(),
+            "psu": psu.query.all(),
+            "storage": storage.query.all(),
+            "case": case.query.all(),
+            "motherboard": motherboard.query.all()
+}
 
 # if __name__ == '__main__':
     # app.run(debug=True)
