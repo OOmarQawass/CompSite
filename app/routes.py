@@ -1,42 +1,44 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-import os
-from app import app
-from app.models import cpu, gpu, ram, cooler, psu, storage, case, motherboard
+from flask import Flask, jsonify, render_template
+from app import app, db
+from app.models import cpu, ram, cooler, case, gpu, psu, storage, motherboard
 
 
-# app = Flask(__name__)
-
-# Database configuration
-basedir = os.path.abspath(os.path.dirname(__file__))
-db_uri = 'sqlite:///' + os.path.join(basedir, "parts.db")
-app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+# Create tables if they don't exist
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/')
 def home():
+    # Renders the home page.
     return render_template('home.html', page_title='Home')
 
 
 @app.route('/how_to')
 def how_to():
+    # Renders the how-to page.
     return render_template('how_to.html', page_title='HOW TO')
 
 
 @app.route('/parts_lists')
-def part_lists():
-    parts = {
-            "cpu": cpu.query.all(),
-            "gpu": gpu.query.all(),
-            "ram": ram.query.all(),
-            "cooler": cooler.query.all(),
-            "psu": psu.query.all(),
-            "storage": storage.query.all(),
-            "case": case.query.all(),
-            "motherboard": motherboard.query.all()
-}
-
-# if __name__ == '__main__':
-    # app.run(debug=True)
+def parts_lists():
+    cpus = cpu.query.all()
+    rams = ram.query.all()
+    coolers = cooler.query.all()
+    cases = case.query.all()
+    gpus = gpu.query.all()
+    psus = psu.query.all()
+    storages = storage.query.all()
+    motherboards = motherboard.query.all()
+    return render_template(
+        'parts_lists.html',
+        page_title='Parts Lists',
+        cpus=cpus,
+        rams=rams,
+        coolers=coolers,
+        cases=cases,
+        gpus=gpus,
+        psus=psus,
+        storages=storages,
+        motherboards=motherboards
+    )

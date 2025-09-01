@@ -1,104 +1,71 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    String,
-    ForeignKey,
-    Table,
-)
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from flask_sqlalchemy import SQLAlchemy
 
-Base = declarative_base()
-
-ram_motherboard_compatibility = Table(
-    'ram_motherboard_compatibility',
-    Base.metadata,
-    Column('ram_id', Integer, ForeignKey('ram.id')),
-    Column('motherboard_id', Integer, ForeignKey('motherboard.id'))
-)
+from app import db
 
 
-class Case(Base):
-    __tablename__ = 'case'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    form_factor = Column(String)
-
-
-class Storage(Base):
-    __tablename__ = 'storage'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    capacity = Column(String)
-    type = Column(String)
+class cpu(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    socket = db.Column(db.String(50), nullable=False)
+    motherboards = db.relationship('motherboard', backref='cpu', lazy=True)
 
 
-class PSU(Base):
-    __tablename__ = 'psu'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    wattage = Column(String)
-    effeciency_rating = Column(String)
-
-
-class GPU(Base):
-    __tablename__ = 'gpu'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    vram = Column(String)
+class ram(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    capacity = db.Column(db.String(50), nullable=False)
+    speed = db.Column(db.String(50), nullable=False)
+    type = db.Column(db.String(50), nullable=False)
+    ram_motherboard_compatibilities = db.relationship(
+        'ram_motherboard_compatibility', backref='motherboard', lazy=True)
 
 
-class Cooler(Base):
-    __tablename__ = 'cooler'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    type = Column(String)
-    size = Column(String)
-
-
-class CPU(Base):
-    __tablename__ = 'cpu'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    socket = Column(String)
+class cooler(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    type = db.Column(db.String(50), nullable=False)
+    size = db.Column(db.String(50), nullable=False)
+    motherboards = db.relationship('motherboard', backref='cooler', lazy=True)
 
 
-class RAM(Base):
-    __tablename__ = 'ram'
-
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    speed = Column(String)
-    capacity = Column(String)
-    type = Column(String)
-
-    motherboards = relationship(
-        'Motherboard',
-        secondary=ram_motherboard_compatibility,
-        back_populates='rams'
-    )
+class case(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    form_factor = db.Column(db.String(50), nullable=False)
+    motherboards = db.relationship('motherboard', backref='case', lazy=True)
 
 
-class Motherboard(Base):
-    __tablename__ = 'motherboard'
+class gpu(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    vram = db.Column(db.String(50), nullable=False)
 
-    id = Column(Integer, primary_key=True)
-    model = Column(String)
-    chipset = Column(String)
-    form_factor = Column(String)
-    cpu_id = Column(String)
-    cooler_id = Column(String)
-    ram_id = Column(String)
-    case_id = Column(String)
 
-    rams = relationship(
-        'RAM',
-        secondary=ram_motherboard_compatibility,
-        back_populates='motherboards'
-    )
+class psu(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    wattage = db.Column(db.String(50), nullable=False)
+    effeciency_rating = db.Column(db.String(50), nullable=False)
+
+
+class storage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    capacity = db.Column(db.String(50), nullable=False)
+    type = db.Column(db.String(50), nullable=False)
+
+
+class motherboard(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(100), nullable=False)
+    chipset = db.Column(db.String(50), nullable=False)
+    form_factor = db.Column(db.String(50), nullable=False)
+    cpu_id = db.Column(db.Integer, db.ForeignKey('cpu.id'), nullable=False)
+    cooler_id = db.Column(db.Integer, db.ForeignKey('cooler.id'), nullable=False)
+    case_id = db.Column(db.Integer, db.ForeignKey('case.id'), nullable=False)
+    ram_motherboard_compatibilities = db.relationship('ram_motherboard_compatibility', lazy=True)
+
+
+class ram_motherboard_compatibility(db.Model):
+    ram_id = db.Column(db.Integer, db.ForeignKey('ram.id'), primary_key=True)
+    motherboard_id = db.Column(db.Integer, db.ForeignKey('motherboard.id'), primary_key=True)

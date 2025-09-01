@@ -22,6 +22,81 @@
     <main>
         
         <p><h2>This is the Parts Lists page, here you'll see different part lists currated for different budgets.</h2></p>
+        
+        <main>
+    <h2>CPU List</h2>
+    <ul>
+        {% for cpu in cpus %}
+            <li>{{ cpu.model }} (Socket: {{ cpu.socket }})</li>
+        {% else %}
+            <li>No CPUs found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>RAM List</h2>
+    <ul>
+        {% for ram in rams %}
+            <li>{{ ram.model }} - {{ ram.capacity }} - {{ ram.speed }} - {{ ram.type }}</li>
+        {% else %}
+            <li>No RAM found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Motherboard List</h2>
+    <ul>
+        {% for motherboard in motherboards %}
+            <li>{{ motherboard.model }} (Socket: {{ motherboard.socket }})</li>
+        {% else %}
+            <li>No Motherboards found.</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>PSU List</h2>
+    <ul>
+        {% for psu in psus %}
+            <li>{{ psu.model }} - {{ psu.wattage }} - {{ psu.effeciency_rating }}</li>
+        {% else %}
+            <li>No PSUs found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>GPU List</h2>
+    <ul>
+        {% for gpu in gpus %}
+            <li>{{ gpu.model }} - {{ gpu.memory }} - {{ gpu.core_clock }}</li>
+        {% else %}
+            <li>No GPUs found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Storage List</h2>
+    <ul>
+        {% for storage in storages %}
+            <li>{{ storage.model }} - {{ storage.type }} - {{ storage.capacity }}</li>
+        {% else %}
+            <li>No Storage devices found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Cooler List</h2>
+    <ul>
+        {% for cooler in coolers %}
+            <li>{{ cooler.model }} - {{ cooler.type }} - {{ cooler.fan_speed }}</li>
+        {% else %}
+            <li>No Coolers found.</li>
+        {% endfor %}
+    </ul>
+    <h2>Case List</h2>
+    <ul>
+        {% for case in cases %}
+            <li>{{ case.model }} - {{ case.form_factor }} - {{ case.color }}</li>
+        {% else %}
+            <li>No Cases found.</li>
+        {% endfor %}
+    </ul>
+
+</main>
+    
     </main>
     
     <footer>
