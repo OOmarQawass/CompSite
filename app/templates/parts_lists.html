@@ -25,7 +25,7 @@
         <p><h2>This is the Parts Lists page, here you'll see different part lists currated for different budgets.</h2></p>
         
         <main>
-    <h2>CPU List</h2>
+    <h2>CPU List</h2> <!--Part queries-->
     <ul>
         {% for cpu in cpus %}
             <li>{{ cpu.model }} (Socket: {{ cpu.socket }})</li>
@@ -46,7 +46,7 @@
     <h2>Motherboard List</h2>
     <ul>
         {% for motherboard in motherboards %}
-            <li>{{ motherboard.model }} (Socket: {{ motherboard.socket }})</li>
+            <li>{{ motherboard.model }} (Chipset: {{ motherboard.chipset }}) (Form Factor: {{ motherboard.form_factor}})</li>
         {% else %}
             <li>No Motherboards found.</li>
         {% endfor %}
@@ -64,7 +64,7 @@
     <h2>GPU List</h2>
     <ul>
         {% for gpu in gpus %}
-            <li>{{ gpu.model }} - {{ gpu.memory }} - {{ gpu.core_clock }}</li>
+            <li>{{ gpu.model }} - {{ gpu.vram }}</li>
         {% else %}
             <li>No GPUs found.</li>
         {% endfor %}
@@ -82,7 +82,7 @@
     <h2>Cooler List</h2>
     <ul>
         {% for cooler in coolers %}
-            <li>{{ cooler.model }} - {{ cooler.type }} - {{ cooler.fan_speed }}</li>
+            <li>{{ cooler.model }} - {{ cooler.type }} - {{ cooler.size}}</li>
         {% else %}
             <li>No Coolers found.</li>
         {% endfor %}
@@ -90,7 +90,7 @@
     <h2>Case List</h2>
     <ul>
         {% for case in cases %}
-            <li>{{ case.model }} - {{ case.form_factor }} - {{ case.color }}</li>
+            <li>{{ case.model }} - {{ case.form_factor }}</li>
         {% else %}
             <li>No Cases found.</li>
         {% endfor %}

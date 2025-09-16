@@ -39,6 +39,7 @@
     <form method="POST">
         {{ gpu_form.hidden_tag() }}
         {{ gpu_form.model.label }} {{ gpu_form.model() }}<br>
+        {{ gpu_form.vram.label }} {{ gpu_form.vram() }}<br>
         {{ gpu_form.submit() }}
     </form>
     <h3>Current GPUs</h3>

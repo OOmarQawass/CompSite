@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash
 from app import app, db
 from app.models import cpu, ram, cooler, case, gpu, psu, storage, motherboard
 from app.models import User
@@ -8,7 +8,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 from flask_login import logout_user
 
-
+# Forms for login and adding parts
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -23,6 +23,7 @@ class CPUForm(FlaskForm):
 
 class GPUForm(FlaskForm):
     model = StringField('Model', validators=[DataRequired()])
+    vram = StringField('VRAM', validators=[DataRequired()])
     submit = SubmitField('Add GPU')
 
 
@@ -64,7 +65,7 @@ class StorageForm(FlaskForm):
     type = StringField('Type', validators=[DataRequired()])
     submit = SubmitField('Add Storage')
 
-
+#App routes
 @app.route('/logout')
 @login_required
 def logout():
