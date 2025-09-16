@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+
+  <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/parts_lists">Part Lists</a></li>
+            <li><a href="/how_to">How-to's</a></li>
+            <li><a href="/admin">Admin</a></li>
+        </ul>
+    </nav>
+
+  <h2>Admin Panel</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <!-- CPU -->
+    <h3>Add CPU</h3>
+    <form method="POST">
+        {{ cpu_form.hidden_tag() }}
+        {{ cpu_form.model.label }} {{ cpu_form.model() }}<br>
+        {{ cpu_form.socket.label }} {{ cpu_form.socket() }}<br>
+        {{ cpu_form.submit() }}
+    </form>
+    <h3>Current CPUs</h3>
+    <ul>
+        {% for cpu in cpus %}
+            <li>{{ cpu.model }} ({{ cpu.socket }})
+                <a href="{{ url_for('delete_cpu', id=cpu.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- GPU -->
+    <h3>Add GPU</h3>
+    <form method="POST">
+        {{ gpu_form.hidden_tag() }}
+        {{ gpu_form.model.label }} {{ gpu_form.model() }}<br>
+        {{ gpu_form.submit() }}
+    </form>
+    <h3>Current GPUs</h3>
+    <ul>
+        {% for gpu in gpus %}
+            <li>{{ gpu.model }}
+                <a href="{{ url_for('delete_gpu', id=gpu.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Cooler -->
+    <h3>Add Cooler</h3>
+    <form method="POST">
+        {{ cooler_form.hidden_tag() }}
+        {{ cooler_form.model.label }} {{ cooler_form.model() }}<br>
+        {{ cooler_form.type.label }} {{ cooler_form.type() }}<br>
+        {{ cooler_form.size.label }} {{ cooler_form.size() }}<br>
+        {{ cooler_form.submit() }}
+    </form>
+    <h3>Current Coolers</h3>
+    <ul>
+        {% for cooler in coolers %}
+            <li>{{ cooler.model }} ({{ cooler.type }}, {{ cooler.size }})
+                <a href="{{ url_for('delete_cooler', id=cooler.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Motherboard -->
+    <h3>Add Motherboard</h3>
+    <form method="POST">
+        {{ motherboard_form.hidden_tag() }}
+        {{ motherboard_form.model.label }} {{ motherboard_form.model() }}<br>
+        {{ motherboard_form.socket.label }} {{ motherboard_form.socket() }}<br>
+        {{ motherboard_form.submit() }}
+    </form>
+    <h3>Current Motherboards</h3>
+    <ul>
+        {% for motherboard in motherboards %}
+            <li>{{ motherboard.model }} ({{ motherboard.socket }})
+                <a href="{{ url_for('delete_motherboard', id=motherboard.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- RAM -->
+    <h3>Add RAM</h3>
+    <form method="POST">
+        {{ ram_form.hidden_tag() }}
+        {{ ram_form.model.label }} {{ ram_form.model() }}<br>
+        {{ ram_form.capacity.label }} {{ ram_form.capacity() }}<br>
+        {{ ram_form.speed.label }} {{ ram_form.speed() }}<br>
+        {{ ram_form.type.label }} {{ ram_form.type() }}<br>
+        {{ ram_form.submit() }}
+    </form>
+    <h3>Current RAM</h3>
+    <ul>
+        {% for ram in rams %}
+            <li>{{ ram.model }} ({{ ram.capacity }}, {{ ram.speed }}, {{ ram.type }})
+                <a href="{{ url_for('delete_ram', id=ram.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- PSU -->
+    <h3>Add PSU</h3>
+    <form method="POST">
+        {{ psu_form.hidden_tag() }}
+        {{ psu_form.model.label }} {{ psu_form.model() }}<br>
+        {{ psu_form.wattage.label }} {{ psu_form.wattage() }}<br>
+        {{ psu_form.submit() }}
+    </form>
+    <h3>Current PSUs</h3>
+    <ul>
+        {% for psu in psus %}
+            <li>{{ psu.model }} ({{ psu.wattage }})
+                <a href="{{ url_for('delete_psu', id=psu.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Case -->
+    <h3>Add Case</h3>
+    <form method="POST">
+        {{ case_form.hidden_tag() }}
+        {{ case_form.model.label }} {{ case_form.model() }}<br>
+        {{ case_form.submit() }}
+    </form>
+    <h3>Current Cases</h3>
+    <ul>
+        {% for case in cases %}
+            <li>{{ case.model }}
+                <a href="{{ url_for('delete_case', id=case.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Storage -->
+    <h3>Add Storage</h3>
+    <form method="POST">
+        {{ storage_form.hidden_tag() }}
+        {{ storage_form.model.label }} {{ storage_form.model() }}<br>
+        {{ storage_form.capacity.label }} {{ storage_form.capacity() }}<br>
+        {{ storage_form.type.label }} {{ storage_form.type() }}<br>
+        {{ storage_form.submit() }}
+    </form>
+    <h3>Current Storage</h3>
+    <ul>
+        {% for storage in storages %}
+            <li>{{ storage.model }} ({{ storage.capacity }}, {{ storage.type }})
+                <a href="{{ url_for('delete_storage', id=storage.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
