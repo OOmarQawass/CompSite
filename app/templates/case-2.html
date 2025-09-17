@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>case - {{ case.model if case else 'Not Found' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/parts_lists">Part Lists</a></li>
+            <li><a href="/how_to">How-to's</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/case-1">Case</a></li>
+            <li><a href="/case-2">Case 2</a></li>
+            <li><a href="/case-3">Case 3</a></li>
+        </ul>
+
+<body>
+    {% if case %}
+        <h1>case: {{ case.model }}</h1>
+        <p>case.image: {{ case.image }}</p>
+    <img src="/static/case-2.jpg" alt="case Image" style="max-width:300px;">
+        <h2>Details</h2>
+        
+<a href="https://www.pbtech.co.nz/product/CHAANT720032/Antec-C3-ARGB-White-MidTower-Gaming-Case-Tempered" target="_blank">PB Tech Link</a>
+
+        <ul>
+            {% for col, val in case.__dict__.items() if col != "_sa_instance_state" %}
+                <li>{{ col|capitalize }}: {{ val }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Pairs Well With</h2>
+        <ul>
+            {% if cpu %}
+                <li>CPU: {{ cpu.model }}</li>
+            {% endif %}
+            {% if GPU %}
+                <li>GPU: {{ gpu.model }}</li>
+            {% endif %}
+            {% if motherboard %}
+                <li>motherboard: {{ motherboard.model }}</li>
+            {% endif %}
+            {% if case %}
+                <li>RAM: {{ ram.model }}</li>
+            {% endif %}
+            {% if storage %}
+                <li>Storage: {{ storage.model }}</li>
+            {% endif %}
+            {% if case %}
+                <li>PSU: {{ psu.model }}</li>
+            {% endif %}
+            {% if case %}
+                <li>Cooler: {{ cooler.model }}</li>
+            {% endif %}
+        </ul>
+    {% else %}
+        <h1>No GPU with id=1 found.</h1>
+    {% endif %}
+
+    <a href="{{ url_for('parts_lists') }}">Back to Parts List</a>
+</body>
+</html>

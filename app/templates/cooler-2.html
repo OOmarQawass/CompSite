@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cooler - {{ cooler.model if cooler else 'Not Found' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/parts_lists">Part Lists</a></li>
+            <li><a href="/how_to">How-to's</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/cooler-1">RAM</a></li>
+            <li><a href="/cooler-2">RAM2</a></li>
+            <li><a href="/cooler-3">RAM3</a></li>
+        </ul>
+
+<body>
+    {% if cooler %}
+        <h1>cooler: {{ cooler.model }}</h1>
+        <p>cooler.image: {{ cooler.image }}</p>
+    <img src="/static/cooler2.jpg" alt="cooler Image" style="max-width:300px;">
+        <h2>Details</h2>
+        
+        <ul>
+            {% for col, val in cooler.__dict__.items() if col != "_sa_instance_state" %}
+                <li>{{ col|capitalize }}: {{ val }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="https://www.pbtech.co.nz/product/WTRNZX1111/NZXT-Kraken-240-RGB-Black-240mm-All-in-one-Water-C" target="_blank">PB Tech Link</a>
+
+        <h2>Pairs Well With</h2>
+        <ul>
+            {% if cpu %}
+                <li>CPU: {{ cpu.model }}</li>
+            {% endif %}
+            {% if GPU %}
+                <li>GPU: {{ gpu.model }}</li>
+            {% endif %}
+            {% if motherboard %}
+                <li>motherboard: {{ motherboard.model }}</li>
+            {% endif %}
+            {% if cooler %}
+                <li>RAM: {{ ram.model }}</li>
+            {% endif %}
+            {% if storage %}
+                <li>Storage: {{ storage.model }}</li>
+            {% endif %}
+            {% if cooler %}
+                <li>PSU: {{ psu.model }}</li>
+            {% endif %}
+            {% if case %}
+                <li>Case: {{ case.model }}</li>
+            {% endif %}
+        </ul>
+    {% else %}
+        <h1>No GPU with id=1 found.</h1>
+    {% endif %}
+
+    <a href="{{ url_for('parts_lists') }}">Back to Parts List</a>
+</body>
+</html>

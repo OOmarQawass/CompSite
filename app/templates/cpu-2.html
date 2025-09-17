@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CPU - {{ cpu.model if cpu else 'Not Found' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/parts_lists">Part Lists</a></li>
+            <li><a href="/how_to">How-to's</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/cpu1">CPU</a></li>
+            <li><a href="/cpu2">CPU2</a></li>
+            <li><a href="/cpu3">CPU3</a></li>
+        </ul>
+
+
+<body>
+    {% if cpu %}
+        <h1>CPU: {{ cpu.model }}</h1>
+        <p>cpu.image: {{ cpu.image }}</p>
+    <img src="/static/cpu2.jpg" alt="CPU Image" style="max-width:300px;">
+        <h2>Details</h2>
+        <h4>Cores: 8</h4>
+        <h4>Threads: 16</h4>
+        <h4>Base Clock: 3.4 GHz</h4>
+        <h4>Boost Clock: 4.6 GHz</h4>
+
+        <a href="https://extremepc.co.nz/amd-ryzen-7-5700x-cpu-8-core-16-thread-am4-socket-oem-without-cooler/">EXTREMEPC Link</a>
+        
+        <ul>
+            {% for col, val in cpu.__dict__.items() if col != "_sa_instance_state" %}
+                <li>{{ col|capitalize }}: {{ val }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Pairs Well With</h2>
+        <ul>
+            {% if gpu %}
+                <li>GPU: {{ gpu.model }}</li>
+            {% endif %}
+            {% if motherboard %}
+                <li>Motherboard: {{ motherboard.model }}</li>
+            {% endif %}
+            {% if psu %}
+                <li>PSU: {{ psu.model }}</li>
+            {% endif %}
+            {% if cooler %}
+                <li>Cooler: {{ cooler.model }}</li>
+            {% endif %}
+            {% if storage %}
+                <li>Storage: {{ storage.model }}</li>
+            {% endif %}
+            {% if ram %}
+                <li>RAM: {{ ram.model }}</li>
+            {% endif %}
+            {% if case %}
+                <li>Case: {{ case.model }}</li>
+            {% endif %}
+        </ul>
+    {% else %}
+        <h1>No CPU with id=1 found.</h1>
+    {% endif %}
+
+    <a href="{{ url_for('parts_lists') }}">Back to Parts List</a>
+</body>
+</html>

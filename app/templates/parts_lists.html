@@ -17,24 +17,34 @@
             <li><a href="/parts_lists">Part Lists</a></li>
             <li><a href="/how_to">How-to's</a></li>
             <li><a href="/admin">Admin</a></li>
+            <li><a href="/cpu1">CPU's</a></li>
+            <li><a href="/gpu1">GPU's</a></li>
+            <li><a href="/motherboard1">Mobo's</a></li>
+            <li><a href="/psu1">PSU's</a></li>
+            <li><a href="/ram1">RAM's</a></li>
+            <li><a href="/cooler1">Coolers</a></li>
+            <li><a href="/case1">Cases</a></li>
+            <li><a href="/storage1">Storage</a></li>
         </ul>
     </nav>
     
     <main>
         
-        <p><h2>This is the Parts Lists page, here you'll see different part lists currated for different budgets.</h2></p>
+        <p><h2>This is the Parts Lists page, here you'll see a list of parts, each being suited more towards a different budget.<br> For more information about each part, click the links above.</h2></p>
         
         <main>
     <h2>CPU List</h2> <!--Part queries-->
+    <img src="/static/cpu.jpg" alt="CPU Image" style="max-width:100px;">
     <ul>
         {% for cpu in cpus %}
-            <li>{{ cpu.model }} (Socket: {{ cpu.socket }})</li>
+            <li>{{ cpu.model }} (Socket: {{ cpu.socket }})</li><a img src="/static/cpu.jpg" alt="CPU Image" style="max-width:100px;"></a>
         {% else %}
             <li>No CPUs found.</li>
         {% endfor %}
     </ul>
 
     <h2>RAM List</h2>
+    <img src="/static/ram.jpg" alt="RAM Image" style="max-width:100px;">
     <ul>
         {% for ram in rams %}
             <li>{{ ram.model }} - {{ ram.capacity }} - {{ ram.speed }} - {{ ram.type }}</li>
@@ -42,7 +52,7 @@
             <li>No RAM found.</li>
         {% endfor %}
     </ul>
-
+    <img src="/static/motherboard.jpg" alt="Motherboard Image" style="max-width:100px;">
     <h2>Motherboard List</h2>
     <ul>
         {% for motherboard in motherboards %}
@@ -53,6 +63,7 @@
     </ul>
     
     <h2>PSU List</h2>
+    <img src="/static/evga-supernova-g2-850.jpg" alt="PSU Image" style="max-width:100px;">
     <ul>
         {% for psu in psus %}
             <li>{{ psu.model }} - {{ psu.wattage }} - {{ psu.effeciency_rating }}</li>
@@ -62,6 +73,7 @@
     </ul>
 
     <h2>GPU List</h2>
+    <img src="/static/gpu.jpg" alt="GPU Image" style="max-width:100px;">
     <ul>
         {% for gpu in gpus %}
             <li>{{ gpu.model }} - {{ gpu.vram }}</li>
@@ -71,6 +83,7 @@
     </ul>
 
     <h2>Storage List</h2>
+    <img src="/static/Intel-900P-SSD-9.jpg" alt="Storage Image" style="max-width:100px;">
     <ul>
         {% for storage in storages %}
             <li>{{ storage.model }} - {{ storage.type }} - {{ storage.capacity }}</li>
@@ -80,6 +93,7 @@
     </ul>
 
     <h2>Cooler List</h2>
+    <img src="/static/cooler.jpg" alt="Cooler Image" style="max-width:100px;">
     <ul>
         {% for cooler in coolers %}
             <li>{{ cooler.model }} - {{ cooler.type }} - {{ cooler.size}}</li>
@@ -88,6 +102,7 @@
         {% endfor %}
     </ul>
     <h2>Case List</h2>
+    <img src="/static/phanteks-evolv-x2-pc-case.jpg" alt="Case Image" style="max-width:100px;">
     <ul>
         {% for case in cases %}
             <li>{{ case.model }} - {{ case.form_factor }}</li>

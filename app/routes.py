@@ -10,45 +10,6 @@ from flask_login import logout_user
 from flask import session
 
 
-#This dictionary is used to fetch all parts with id 1
-parts_with_id_1 = {
-    'cpu': cpu.query.filter_by(id=1).all(),
-    'gpu': gpu.query.filter_by(id=1).all(),
-    'ram': ram.query.filter_by(id=1).all(),
-    'cooler': cooler.query.filter_by(id=1).all(),
-    'motherboard': motherboard.query.filter_by(id=1).all(),
-    'psu': psu.query.filter_by(id=1).all(),
-    'case': case.query.filter_by(id=1).all(),
-    'storage': storage.query.filter_by(id=1).all(),
-}
-
-
-#This dictionary is used to fetch all parts with id 2
-parts_with_id_2 = {
-    'cpu': cpu.query.filter_by(id=2).all(),
-    'gpu': gpu.query.filter_by(id=2).all(),
-    'ram': ram.query.filter_by(id=2).all(),
-    'cooler': cooler.query.filter_by(id=2).all(),
-    'motherboard': motherboard.query.filter_by(id=2).all(),
-    'psu': psu.query.filter_by(id=2).all(),
-    'case': case.query.filter_by(id=2).all(),
-    'storage': storage.query.filter_by(id=2).all(),
-}
-
-
-#This dictionary is used to fetch all parts with id 3
-parts_with_id_3 = {
-    'cpu': cpu.query.filter_by(id=3).all(),
-    'gpu': gpu.query.filter_by(id=3).all(),
-    'ram': ram.query.filter_by(id=3).all(),
-    'cooler': cooler.query.filter_by(id=3).all(),
-    'motherboard': motherboard.query.filter_by(id=3).all(),
-    'psu': psu.query.filter_by(id=3).all(),
-    'case': case.query.filter_by(id=3).all(),
-    'storage': storage.query.filter_by(id=3).all(),
-}
-
-
 # Forms for login and adding parts
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -350,3 +311,555 @@ def delete_storage(id):
     db.session.commit()
     flash('Storage deleted!')
     return
+
+
+@app.route('/cpu1')
+def cpu_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'cpu-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/cpu2')
+def cpu_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'cpu-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/cpu3')
+def cpu_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'cpu-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/gpu1')
+def gpu_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'gpu-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/gpu2')
+def gpu_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'gpu-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/gpu3')
+def gpu_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'gpu-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/motherboard1')
+def motherboard_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'motherboard-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/motherboard2')
+def motherboard_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'motherboard-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/motherboard3')
+def motherboard_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'motherboard-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/psu1')
+def psu_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'psu-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/psu-2')
+def psu_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'psu-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/psu-3')
+def psu_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'psu-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/ram1')
+def ram_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'ram-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/ram-2')
+def ram_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'ram-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/ram-3')
+def ram_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'ram-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/cooler1')
+def cooler_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'cooler-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/cooler-2')
+def cooler_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'cooler-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/cooler-3')
+def cooler_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'cooler-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/case-1')
+def case_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'case-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/case-2')
+def case_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'case-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/case-3')
+def case_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'case-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/storage1')
+def storage_1_detail():
+    cpu_part = cpu.query.get(1)
+    gpu_part = gpu.query.get(1)
+    motherboard_part = motherboard.query.get(1)
+    psu_part = psu.query.get(1)
+    cooler_part = cooler.query.get(1)
+    storage_part = storage.query.get(1)
+    ram_part = ram.query.get(1)
+    case_part = case.query.get(1)
+    return render_template(
+        'storage-1.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/storage-2')
+def storage_2_detail():
+    cpu_part = cpu.query.get(2)
+    gpu_part = gpu.query.get(2)
+    motherboard_part = motherboard.query.get(2)
+    psu_part = psu.query.get(2)
+    cooler_part = cooler.query.get(2)
+    storage_part = storage.query.get(2)
+    ram_part = ram.query.get(2)
+    case_part = case.query.get(2)
+    return render_template(
+        'storage-2.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )
+
+
+@app.route('/storage-3')
+def storage_3_detail():
+    cpu_part = cpu.query.get(3)
+    gpu_part = gpu.query.get(3)
+    motherboard_part = motherboard.query.get(3)
+    psu_part = psu.query.get(3)
+    cooler_part = cooler.query.get(3)
+    storage_part = storage.query.get(3)
+    ram_part = ram.query.get(3)
+    case_part = case.query.get(3)
+    return render_template(
+        'storage-3.html',
+        cpu=cpu_part,
+        gpu=gpu_part,
+        motherboard=motherboard_part,
+        psu=psu_part,
+        cooler=cooler_part,
+        storage=storage_part,
+        ram=ram_part,
+        case=case_part
+    )

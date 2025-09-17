@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CPU - {{ cpu.model if cpu else 'Not Found' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/parts_lists">Part Lists</a></li>
+            <li><a href="/how_to">How-to's</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/gpu1">GPU</a></li>
+            <li><a href="/gpu2">GPU2</a></li>
+            <li><a href="/gpu3">GPU3</a></li>
+        </ul>
+
+<body>
+    {% if cpu %}
+        <h1>GPU: {{ gpu.model }}</h1>
+        <p>gpu.image: {{ gpu.image }}</p>
+    <img src="/static/gpu2.jpg" alt="GPU Image" style="max-width:300px;">
+        <h2>Details</h2>
+        <h4>VRAM: 8 GB GDDR6</h4>
+        <h4>Base Clock: 1700 GHz</h4>
+        <h4>Boost Clock: 2105 GHz</h4>
+        <h4>(Note: This GPU has been discontinued and may be hard to get now.)</h4>
+
+        <a href="https://www.ebay.com/shop/amd-radeon-rx-6800?_nkw=amd+radeon+rx+6800">Ebay Link</a>
+        
+        <ul>
+            {% for col, val in gpu.__dict__.items() if col != "_sa_instance_state" %}
+                <li>{{ col|capitalize }}: {{ val }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Pairs Well With</h2>
+        <ul>
+            {% if cpu %}
+                <li>CPU: {{ cpu.model }}</li>
+            {% endif %}
+            {% if motherboard %}
+                <li>Motherboard: {{ motherboard.model }}</li>
+            {% endif %}
+            {% if psu %}
+                <li>PSU: {{ psu.model }}</li>
+            {% endif %}
+            {% if cooler %}
+                <li>Cooler: {{ cooler.model }}</li>
+            {% endif %}
+            {% if storage %}
+                <li>Storage: {{ storage.model }}</li>
+            {% endif %}
+            {% if ram %}
+                <li>RAM: {{ ram.model }}</li>
+            {% endif %}
+            {% if case %}
+                <li>Case: {{ case.model }}</li>
+            {% endif %}
+        </ul>
+    {% else %}
+        <h1>No GPU with id=1 found.</h1>
+    {% endif %}
+
+    <a href="{{ url_for('parts_lists') }}">Back to Parts List</a>
+</body>
+</html>
