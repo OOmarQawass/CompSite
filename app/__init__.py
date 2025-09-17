@@ -2,12 +2,14 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from datetime import timedelta
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'  # Needed for Flask-Login and Flask-WTF
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'parts.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=10)  # auto-logout after 10 min
 
 db = SQLAlchemy(app)
 

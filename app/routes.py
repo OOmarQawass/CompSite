@@ -7,6 +7,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 from flask_login import logout_user
+from flask import session
+
 
 # Forms for login and adding parts
 class LoginForm(FlaskForm):
@@ -56,6 +58,7 @@ class PSUForm(FlaskForm):
 
 class CaseForm(FlaskForm):
     model = StringField('Model', validators=[DataRequired()])
+    form_factor = StringField('Form Factor', validators=[DataRequired()])
     submit = SubmitField('Add Case')
 
 
@@ -64,6 +67,7 @@ class StorageForm(FlaskForm):
     capacity = StringField('Capacity', validators=[DataRequired()])
     type = StringField('Type', validators=[DataRequired()])
     submit = SubmitField('Add Storage')
+
 
 #App routes
 @app.route('/logout')
@@ -84,6 +88,7 @@ def login():
         else:
             flash('Invalid username or password')
     return render_template('login.html', form=form)
+    session.permanent = True  # Make the session permanent so it lasts for PERMANENT_SESSION_LIFETIME   
 
 
 @app.route('/')

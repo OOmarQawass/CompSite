@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 
@@ -127,6 +128,7 @@
     <form method="POST">
         {{ case_form.hidden_tag() }}
         {{ case_form.model.label }} {{ case_form.model() }}<br>
+        {{ case_form.form_factor.label }} {{ case_form.form_factor() }}<br>
         {{ case_form.submit() }}
     </form>
     <h3>Current Cases</h3>
