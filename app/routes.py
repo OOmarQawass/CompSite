@@ -10,6 +10,45 @@ from flask_login import logout_user
 from flask import session
 
 
+#This dictionary is used to fetch all parts with id 1
+parts_with_id_1 = {
+    'cpu': cpu.query.filter_by(id=1).all(),
+    'gpu': gpu.query.filter_by(id=1).all(),
+    'ram': ram.query.filter_by(id=1).all(),
+    'cooler': cooler.query.filter_by(id=1).all(),
+    'motherboard': motherboard.query.filter_by(id=1).all(),
+    'psu': psu.query.filter_by(id=1).all(),
+    'case': case.query.filter_by(id=1).all(),
+    'storage': storage.query.filter_by(id=1).all(),
+}
+
+
+#This dictionary is used to fetch all parts with id 2
+parts_with_id_2 = {
+    'cpu': cpu.query.filter_by(id=2).all(),
+    'gpu': gpu.query.filter_by(id=2).all(),
+    'ram': ram.query.filter_by(id=2).all(),
+    'cooler': cooler.query.filter_by(id=2).all(),
+    'motherboard': motherboard.query.filter_by(id=2).all(),
+    'psu': psu.query.filter_by(id=2).all(),
+    'case': case.query.filter_by(id=2).all(),
+    'storage': storage.query.filter_by(id=2).all(),
+}
+
+
+#This dictionary is used to fetch all parts with id 3
+parts_with_id_3 = {
+    'cpu': cpu.query.filter_by(id=3).all(),
+    'gpu': gpu.query.filter_by(id=3).all(),
+    'ram': ram.query.filter_by(id=3).all(),
+    'cooler': cooler.query.filter_by(id=3).all(),
+    'motherboard': motherboard.query.filter_by(id=3).all(),
+    'psu': psu.query.filter_by(id=3).all(),
+    'case': case.query.filter_by(id=3).all(),
+    'storage': storage.query.filter_by(id=3).all(),
+}
+
+
 # Forms for login and adding parts
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
